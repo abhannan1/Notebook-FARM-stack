@@ -79,6 +79,7 @@ const {
             // justifyContent='center'
             p={12}
             rounded={6}
+            maxHeight="90vh"
         >
           <form onSubmit={handleSubmit(onSubmit)} 
           style={{justifyContent:'center', alignItems:'center', display:'flex', flexDirection:'column', width:'100%'}}
