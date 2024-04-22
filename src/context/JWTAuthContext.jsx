@@ -108,15 +108,30 @@ export const AuthProvider = (props) => {
     }
   };
 
-  const handleForward = ({accessToken, refreshToken,user}) =>{
-    if (accessToken && validateToken(accessToken)) {
-      setSession(accessToken);
+  const handleForward = async({accessToken, refreshToken}) =>{
+    try {
+      if (accessToken && validateToken(accessToken)) {
+        setSession(accessToken, refreshToken);
+        const response = await axiosInstance.get("/users/me");
+        const { data: user } = response;
+        dispatch({
+          type: "INITIALIZE",
+          payload: {
+            isAuthenticated: true,
+            user,
+          },
+        });
+      }
+    } catch (error) {
+      console.error(error.message);
       dispatch({
-        type:"FORWARD",
-        payload:{
-          user:user
-        }
-      })
+        type: "INITIALIZE",
+        payload: {
+          isAuthenticated: false,
+          user: null,
+        },
+      });
+    }
     }
   }
 

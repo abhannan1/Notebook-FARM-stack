@@ -17,20 +17,28 @@ export const GoogleAuth = () => {
 
 
     useEffect(()=>{
-        const handleForwardRef = () => {
-            const data = {
+        if(!refreshToken || !accessToken) {
+            return navigate("/login", {replace:true})
+        }else{
+            const handleForwardRef =async () => {
+                const data = {
                 user:{
-                name,
-                email,
-                password,
+                    name,
+                    email,
+                    password,
                 },
                 refreshToken,
                 accessToken
             }
-            handleForward(data)
+            try {
+                await handleForward(data)
+            } catch (error) {
+                return navigate("/login", {replace:true})
+            }
             navigate("/", {replace:true})
         }
         handleForwardRef()
+    }
     })
 
     
