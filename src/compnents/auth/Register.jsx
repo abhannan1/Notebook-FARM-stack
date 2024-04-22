@@ -72,19 +72,24 @@ const {
       flexDirection='row'
       alignItems='center'
       />
+
         <Flex
             direction='column'
             alignItems='center'
             background = {useColorModeValue('gray.300', 'gray.700')}
             // justifyContent='center'
-            p={12}
+            pl={14}
+            pr={14}
+            pb={8}
+            pt={8}
+            // p={12}
             rounded={6}
-            maxHeight="90vh"
+            margin={3}
         >
           <form onSubmit={handleSubmit(onSubmit)} 
-          style={{justifyContent:'center', alignItems:'center', display:'flex', flexDirection:'column', width:'100%'}}
+          style={{justifyContent:'center', alignItems:'center', display:'flex', flexDirection:'column', width:'100%', margin:"12"}}
           >
-            <Heading mb={6}>Register</Heading>
+            <Heading mb={3}>Register</Heading>
             
             <FormControl isInvalid= {errors.email}>
             <Input 
@@ -93,7 +98,7 @@ const {
             type='email'
             name='email'
             // size='lg'
-            mt={6}
+            mt={3}
             {...register('email',{
               required: 'This is a required field'
             })}
@@ -109,7 +114,7 @@ const {
               background={useColorModeValue('gray.300', 'gray.600')}
               type='username'
             //   size='lg'
-              mt={6}
+              mt={3}
               {...register('username',{
                 required: 'This is a required field',
                 minLength:{
@@ -134,7 +139,7 @@ const {
               type='password'
               width='100%'
             //   size='lg'
-              mt={6}
+              mt={3}
               {...register('password',{
                 required: 'This is a required field',
                 minLength:{
